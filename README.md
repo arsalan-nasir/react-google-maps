@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+First, Go to console.google.com and then enable Places API in the dashboard then copy your API key and add in the .env file
+
 In the project directory, you can run:
 
 ### `npm start`
