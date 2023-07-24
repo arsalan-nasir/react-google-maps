@@ -9,6 +9,7 @@ const AutoCompleteField = ({
   onSearch,
   value,
   onChange,
+  onFocus,
 }) => {
   const debouncedSearch = debounce(onSearch, 1000);
 
@@ -17,6 +18,7 @@ const AutoCompleteField = ({
       <AutoComplete
         value={value}
         options={options}
+        onFocus={onFocus}
         style={{
           width: "40%",
           display: "flex",
@@ -31,4 +33,4 @@ const AutoCompleteField = ({
     </div>
   );
 };
-export default AutoCompleteField;
+export default React.memo(AutoCompleteField);

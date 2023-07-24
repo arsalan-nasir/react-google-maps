@@ -14,6 +14,12 @@ const placesReducer = produce((draft, action) => {
       draft.loading = false;
       draft.markerLocation = action.payload;
       return;
+    case ACTIONS.SAVE_SEARCH_HISTORY:
+      draft.searchHistory = action.payload;
+      return;
+    case ACTIONS.SHOW_SEARCH_HISTORY:
+      draft.placesList = action.payload;
+      return;
     default:
       return draft;
   }

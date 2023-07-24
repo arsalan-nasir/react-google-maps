@@ -12,12 +12,20 @@ function placesRequest() {
   return { type: ACTIONS.PLACES_REQUEST };
 }
 
-function placesSuccess(payload) {
+export function placesSuccess(payload) {
   return { type: ACTIONS.PLACES_SUCCESS, payload };
 }
 
 function setMarkerLocation(payload) {
   return { type: ACTIONS.SET_MARKER_LOCATION, payload };
+}
+
+function setSearchHistory(payload) {
+  return { type: ACTIONS.SAVE_SEARCH_HISTORY, payload };
+}
+
+function showSearchHistory(payload) {
+  return { type: ACTIONS.SHOW_SEARCH_HISTORY, payload };
 }
 
 export function onPlaceSearch(value) {
@@ -40,10 +48,6 @@ export function onPlaceSearch(value) {
 }
 
 export function getSelectedPlaceData(placeId) {
-  // const placesService = new google.maps.places.PlacesService(
-  //   new window.google.maps.Map(document.createElement("map"))
-  // );
-
   return async (dispatch) => {
     dispatch(placesRequest());
     try {
@@ -58,5 +62,27 @@ export function getSelectedPlaceData(placeId) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function saveSearchHistory(data) {
+  return async (dispatch, getState) => {
+    try {
+      const {
+        places: { searchHistory },
+      } = getState();
+      dispatch(setSearchHistory([...searchHistory, data]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getSearchHistory() {
+  return async (dispatch, getState) => {
+    const {
+      places: { searchHistory },
+    } = getState();
+    dispatch(showSearchHistory(searchHistory));
   };
 }
